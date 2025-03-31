@@ -2,38 +2,48 @@ version: 2
 
 models:
   - name: num_of_orders_by_customers
-    description: One record per customer
+    description: Number of orders by customer
     columns:
       - name: customer_id
-        description: Primary key
+        description: ID of Customer. Primary key
         tests:
           - unique
           - not_null
+      - name: first_name
+        description: The customer first name
+      - name: last_name
+        description: The customer last name
       - name: first_order_date
-        description: NULL when a customer has not yet placed an order.
+        description: Date of first order. NULL if customer has not yet placed an order
+      - name: most_recent_order_date
+        description: Date of last order. NULL if customer has not yet placed an order
+      - name: number_of_orders
+        description: Number of order
 
   - name: all_customers
-    description: This model cleans up customer data
+    description: Model for customer data
     columns:
       - name: customer_id
-        description: Primary key
+        description: ID of Customer. Primary key
         tests:
           - unique
           - not_null
 
   - name: all_orders
-    description: This model cleans up order data
+    description: Model for order data
     columns:
       - name: order_id
-        description: Primary key
+        description: ID of Order. Primary key
         tests:
           - unique
           - not_null
       - name: status
+        description: Order status
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
       - name: customer_id
+        description: Foreign key to customer
         tests:
           - not_null
           - relationships:
