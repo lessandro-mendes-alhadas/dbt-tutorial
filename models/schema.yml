@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: customers
+  - name: num_of_orders_by_customers
     description: One record per customer
     columns:
       - name: customer_id
@@ -37,5 +37,5 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('stg_customers')
+              to: ref('all_customers')
               field: customer_id
